@@ -1,4 +1,4 @@
-import Pygame
+import pygame
 import random
 
 ##en el primer juego, sale el que tiene doble 6, en los siguientes, el que gana con un doble, si no tiene doble.... (falta ponerlo)

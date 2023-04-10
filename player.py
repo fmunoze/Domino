@@ -18,8 +18,7 @@ class Player:
         if self.tablero.cabeza in ficha or  self.tablero.cola in ficha:
             self.tablero.agregar_ficha(ficha)
             self.fichas.remove(ficha)
-            print(f'{self.name} jugó {ficha}')
-            print(*self.tablero.fichas,'\n')
+            print(f'\n{self.name} jugó {ficha}\n')
         else:
             print(f'{self.name} su jugada invalida\n')
     
@@ -27,7 +26,7 @@ class Player:
     def jugadas_disponibles(self):
         
         if (6,6) in self.fichas:
-            return (6,6)
+            return [(6,6)]
         jugadas_disponibles=[ficha for ficha in self.fichas if self.tablero.cabeza in ficha or self.tablero.cola in ficha]
         return jugadas_disponibles
         

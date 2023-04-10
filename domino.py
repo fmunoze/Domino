@@ -22,12 +22,21 @@ player4 = Player('Luis',fichas[21:28],tablero)
 #designacion de turnos
 Player.designacion_turnos()
 
-while True:
+game=True
+while game:
     for player in Player.players:
-        ficha=None
-        if (6,6) in player.fichas:
-            ficha=(6,6)
-            player.jugar_ficha(ficha)
-        else:
-            print(player.jugadas_disponibles())
-    break
+        if player.jugas_dispobibles==[]:
+            print(f'{player.name} no tiene jugadas dispobibles')
+        jugada_valida=False
+        print(f'Turno de {player.name}\n     Tablero: {player.tablero.fichas}\n     Mano: {player.fichas}\n     Jugadas disponibles: {player.jugadas_disponibles()}\n')
+        while not jugada_valida:
+            ficha=tuple(map(int,input('ingrese la ficha a jugar de la forma \'n m\': ').split()))
+            if ficha in player.jugadas_disponibles():
+                jugada_valida=True
+            else:
+                print('Jugada invalida, ingrese de nuevo la ficha')
+                
+        player.jugar_ficha(ficha)
+        if player.fichas==[]:
+            print(f'GANADOR!: {player.name}')
+            game=False

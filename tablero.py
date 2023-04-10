@@ -17,5 +17,5 @@ class Tablero:
             self.cabeza=tupla[0]
         else:
             tupla.remove(self.cola)
-            sel.fichas.insert(0,((tupla[0],self.cola)))
+            self.fichas.insert(0,((tupla[0],self.cola)))
             self.cola=tupla[0]

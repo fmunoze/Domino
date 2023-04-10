@@ -27,6 +27,7 @@ while game:
     for player in Player.players:
         if player.jugadas_disponibles()==[]:
             print(f'{player.name} no tiene jugadas dispobibles')
+            continue
         jugada_valida=False
         print(f'Turno de {player.name}\n     Tablero: {player.tablero.fichas}\n     Mano: {player.fichas}\n     Jugadas disponibles: {player.jugadas_disponibles()}\n')
         while not jugada_valida:

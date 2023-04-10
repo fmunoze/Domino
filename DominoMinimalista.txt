@@ -1,0 +1,98 @@
+import pygame
+import random
+
+##en el primer juego, sale el que tiene doble 6, en los siguientes, el que gana con un doble, si no tiene doble.... (falta ponerlo)
+## si el jugador tiene 2 dobles y ambos dobles se pueden poner en cada extremo, lo puede hacer "tapicui"
+
+
+## hay que hacer que la ficha se voltee, para que no se cierre (0,1),(6,5)     (6,6)-(6,4)
+
+#calculos jugadas: extremos en variables y se actualiza con el numero coincidente de la ficha
+
+
+
+lógica del juego con las reglas
+
+
+crear fichas: 
+fichas=[(0, 0), (0, 1), (0, 2), (0, 3), (0, 4), (0, 5), (0, 6), (1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (2, 2), (2, 3), (2, 4), (2, 5), (2, 6), (3, 3), (3, 4), (3, 5), (3, 6), (4, 4), (4, 5), (4, 6), (5, 5), (5, 6), (6, 6)]
+
+#...EXTRA igualmente hay que tener una lista como tal de fichas para que la maquina virtual lleve un conteo de cuales tengan y aplicar estrategias automáticas. Aunque tambien podría ser con contadores, ej: seisTotalesPuestos = 0-7 cincos= 0-7 etc
+
+mezclar: 
+random.shuffle(fichas)
+
+#manos de los jugadores, manoJugador: repartir (depende del num de jugadores):
+manoJ = dominos(0:7)  --cómo crear una variable con nombre variable en el for?--
+manoB1 = 
+.
+.
+manoB3=  .....
+
+
+
+
+mesa (al inciio vacía):
+mesa = []
+
+def jugada_disponible(manoJugador, hilera = hilera): ##########actualizar a variables de extremos
+	for ficha in manoJugador: 
+		#	if ficha primer numero in mesa primera ficha primer numero, mesa ultima ficha ultimo numero, o ficha segundo numero in... 		#	lo mismo)
+		if ficha[0] in (mesa[0][0], mesa[-1][1]) or ficha[1] in (mesa[0][0], mesa[-1][1]):
+			return True, loop = 0
+	return False
+
+def jugar_ficha(manoJugador, cola, cabeza, ficha, ???? ): ##mesa ya no va como lista, sino como variables extremas  ??falta agregar como decidir que lado de la ficha poner
+	comprueba disponibilidad para poner
+	insert o append segun
+	remove de la mano del jugador
+	return
+
+def #jugadorArtificial:
+	for ficha in mano: Comprueba cuales puede jugar ( y si no, tomar ficha una vez)
+	##EXTRA agrega una lista temporal de lo que puede jugar, y elige segun control de la mano sobre la mesa
+	jugar_ficha(parametros) y return
+	#si no hubo return:
+	return false  #(no se puede hacer jugada)
+
+
+
+
+################################## separador ######################################
+##main.pkg
+
+
+
+main____________
+
+bucle que actualiza la pantalla, los turnos y ejecuta las jugadas, comprobando si un jugador ganar (lista vacía) o se cierra el tablero:
+
+gameOver = False
+turno = 0
+ganador = None
+
+while not (gameOver or loop==4) : ###loop va sumando cada vez que un jugador no puede hacer una jugada, se resetea si la puede hacer
+	if loop == 4:
+		gameOver = True
+		break
+
+##agregar retrasadores de tiempo para que el jugador tenga tiempo de ver paso a paso lo que hace cada jugador de la maquina (que no salga instantaneo en pantalla todas las jugadas)
+
+
+
+
+	
+
+
+
+
+
+establecer turnos
+
+
+
+################################## separador ######################################
+##interfaz.pkg
+
+
+pygame bla bla bla

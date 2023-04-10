@@ -41,3 +41,4 @@ while game:
         if player.fichas==[]:
             print(f'GANADOR!: {player.name}')
             game=False
+            break

@@ -29,5 +29,5 @@ while True:
             ficha=(6,6)
             player.jugar_ficha(ficha)
         else:
-            print(player.jugadas_disbonibles())
+            print(player.jugadas_disponibles())
     break

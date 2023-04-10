@@ -2,11 +2,20 @@ class Player:
     
     players=[]
     
-    def __init__(self,fichas):
+    def __init__(self,name,fichas):
         
+        self.name = name
         self.fichas = fichas
         self.turno = None
         self.players.append(self)
+    
+    def jugar(self,ficha,tablero):
+        if tablero.cabeza in ficha or  tablero.cola in ficha:
+            tablero.agregar(ficha)
+            self.fichas.remove(ficha)
+        else:
+            return -1
+        
     
     @classmethod
     def designacion_turnos(cls):
@@ -24,3 +33,6 @@ class Player:
                     turno+=1
             if turno==5:
                 break
+            
+        #ordena la lista de jugadores basado en su turno
+        Player.players.sort(key=lambda player: player.turno)

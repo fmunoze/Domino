@@ -1,20 +1,35 @@
 class Player:
     
+    
     players=[]
     
-    def __init__(self,name,fichas):
+    
+    def __init__(self,name,fichas,tablero):
         
         self.name = name
         self.fichas = fichas
         self.turno = None
+        self.tablero= tablero
         self.players.append(self)
     
-    def jugar(self,ficha,tablero):
-        if tablero.cabeza in ficha or  tablero.cola in ficha:
-            tablero.agregar(ficha)
+    
+    def jugar_ficha(self,ficha):
+        
+        if self.tablero.cabeza in ficha or  self.tablero.cola in ficha:
+            self.tablero.agregar_ficha(ficha)
             self.fichas.remove(ficha)
+            print(f'{self.name} jugó {ficha}')
+            print(*self.tablero.fichas,'\n')
         else:
-            return -1
+            print(f'{self.name} su jugada invalida\n')
+    
+        
+    def jugadas_disponibles(self):
+        
+        if (6,6) in self.fichas:
+            return (6,6)
+        jugadas_disponibles=[ficha for ficha in self.fichas if self.tablero.cabeza in ficha or self.tablero.cola in ficha]
+        return jugadas_disponibles
         
     
     @classmethod
@@ -22,7 +37,6 @@ class Player:
         
         turno=2
         encontrado=False
-
         while True:
             for player in Player.players:
                 if (6,6) in player.fichas and encontrado==False:
@@ -33,6 +47,5 @@ class Player:
                     turno+=1
             if turno==5:
                 break
-            
         #ordena la lista de jugadores basado en su turno
         Player.players.sort(key=lambda player: player.turno)

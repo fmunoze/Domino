@@ -1,3 +1,5 @@
+import random
+
 class Player:
     
     
@@ -30,7 +32,19 @@ class Player:
         jugadas_disponibles=[ficha for ficha in self.fichas if self.tablero.cabeza in ficha or self.tablero.cola in ficha]
         return jugadas_disponibles
         
-    
+    def jugada_automatica(self,nivel):
+        if nivel==1:
+            self.jugar_ficha(random.choice(self.jugadas_disponibles()))
+        elif nivel==2:
+            mayor=(-1,-1)
+            for ficha in self.jugadas_disponibles():
+                if sum(ficha)>sum(mayor):
+                    mayor=ficha
+            self.jugar_ficha(mayor)
+
+
+
+
     @classmethod
     def designacion_turnos(cls):
         

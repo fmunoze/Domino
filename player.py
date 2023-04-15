@@ -23,7 +23,7 @@ class Player:
             print(f'\n{self.name} pasó')
         elif self.tablero.cabeza in ficha or  self.tablero.cola in ficha:
             self.tablero.agregar_ficha(ficha)
-            self.fichas.remove(ficha)
+            self.fichas.discard(ficha)
             print(f'\n{self.name} jugó {ficha}\n')
         else:
             print(f'{self.name} su jugada invalida\n')

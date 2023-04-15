@@ -33,11 +33,11 @@ random.shuffle(fichas)
 #Inicializacion de variables y asignacion de fichas (7 por jugador)
 tablero=Tablero()
 #persona
-player1 = Player('Humano',fichas[0:7],tablero)
+player1 = Player('Humano',set(fichas[0:7]),tablero)
 #bots
-player2 = Player('Novato',fichas[7:14],tablero)
-player3 = Player('Promedio',fichas[14:21],tablero)
-player4 = Player('Experto',fichas[21:28],tablero)
+player2 = Player('Novato',set(fichas[7:14]),tablero)
+player3 = Player('Promedio',set(fichas[14:21]),tablero)
+player4 = Player('Experto',set(fichas[21:28]),tablero)
 
 
 #designacion de turnos
@@ -58,20 +58,20 @@ while True:
             
             if player == player2:
                 player.jugada_automatica(1)
-                if player.fichas==[]:
+                if player.fichas==set():
                     ganador=player
                     break
                 continue
             elif player == player3:
                 player.jugada_automatica(2)
-                if player.fichas==[]:
+                if player.fichas==set():
                     ganador=player
                     break
                 continue
 
             elif player == player4:
                 player.jugada_automatica(3)
-                if player.fichas==[]:
+                if player.fichas==set():
                     ganador=player
                     break
                 continue
@@ -96,7 +96,7 @@ while True:
         
         player.jugar_ficha(ficha)
         
-        if player.fichas==[]:
+        if player.fichas==set():
             ganador=player
             break
     

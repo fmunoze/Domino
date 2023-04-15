@@ -1,3 +1,5 @@
+from collections import deque
+
 class Tablero:
     
     
@@ -5,7 +7,7 @@ class Tablero:
         
         self.cabeza=6
         self.cola=6
-        self.fichas=[]
+        self.fichas=deque()
     
     
     def agregar_ficha(self,tupla):
@@ -17,5 +19,5 @@ class Tablero:
             self.cabeza=tupla[0]
         else:
             tupla.remove(self.cola)
-            self.fichas.insert(0,((tupla[0],self.cola)))
+            self.fichas.appendleft((tupla[0],self.cola))
             self.cola=tupla[0]

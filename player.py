@@ -1,6 +1,7 @@
 import random
 import copy
 import tablero
+
 class Player:
     
     

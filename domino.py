@@ -43,44 +43,43 @@ player4 = Player('Experto',fichas[21:28],tablero)
 #designacion de turnos
 Player.designacion_turnos()
 
-game=True
-while game:
-    n_p=0
+ganador=None
+while True:
+    bloqueo=0
     for player in Player.players:
         sleep(0.5)
 
         print('-------------------------------------------------------------')
         
         if player.jugadas_disponibles()==[]:
-            n_p+=1
-            print(f'\n{player.name} no tiene jugadas dispobibles\n')
-            if n_p==4:
-                ganador=player
-                for _player in Player.players:
-                    print(f'mano de {_player.name}: {_player.fichas}')
-                    if sum(list(map(sum,_player.fichas)))<sum(list(map(sum,ganador.fichas))):
-                        ganador=_player
-                print(f'\nGANADOR POR PUNTOS!:{ganador.name}')
-                game=False
-                break
-            continue
-        
-        if player!=player1:
+            bloqueo+=1
 
+        if player!=player1:
+            
             if player == player2:
                 player.jugada_automatica(1)
+                if player.fichas==[]:
+                    ganador=player
+                    break
                 continue
             elif player == player3:
                 player.jugada_automatica(2)
+                if player.fichas==[]:
+                    ganador=player
+                    break
                 continue
 
             elif player == player4:
                 player.jugada_automatica(3)
+                if player.fichas==[]:
+                    ganador=player
+                    break
                 continue
 
 
         jugada_valida=False
         print(f'Turno de {player.name}\n     Tablero: {player.tablero.fichas}\n     Mano: {player.fichas}\n     Jugadas disponibles: {player.jugadas_disponibles()}\n')
+        
         
         while not jugada_valida:
             
@@ -90,21 +89,24 @@ while game:
                 print('Jugada invalida, ingrese de nuevo la ficha')
                 continue
             
-            if ficha==(7,7):
-                print(f'{player.name} pasó')
-                jugada_valida=True  
-
-            elif ficha in player.jugadas_disponibles():
+            if ficha in player.jugadas_disponibles() or ficha==(7,7):
                 jugada_valida=True     
             else:
                 print('Jugada invalida, ingrese de nuevo la ficha')
         
-        
-        if ficha==(7,7):continue
-        
         player.jugar_ficha(ficha)
         
         if player.fichas==[]:
-            print(f'GANADOR!: {player.name}')
-            game=False
+            ganador=player
             break
+    
+    if ganador!=None or bloqueo==4:
+        break
+        
+
+for player in Player.players:
+    if ganador==None:ganador=player
+    print(f'mano de {player.name}: {player.fichas}')
+    if sum(list(map(sum,player.fichas)))<sum(list(map(sum,ganador.fichas))):
+        ganador=player
+print(f'\nGANADOR!:{ganador.name}')   

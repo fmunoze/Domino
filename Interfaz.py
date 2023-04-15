@@ -1,5 +1,5 @@
 ##BOSQUEJO, ignorar!
-
+import pygame
 
 pygame.init()
 
@@ -20,7 +20,7 @@ while not ganador:
       gnador = True
         
     elif event.type == pygame.MOUSEBUTTONDOWN:
-      if turn == 0:
+      if turno == 0:
         clickPos = pygame.mouse.get_pos()
 
   
@@ -31,5 +31,3 @@ while not ganador:
   pygame.display.flip()
   pygame.time.Clock().tick(10)
   pygame.quit()
-  
-  

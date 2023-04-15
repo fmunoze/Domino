@@ -5,15 +5,30 @@ from time import sleep
 
 
 """#por ahora sigue funcionan con listas, porque ajá
+
 fichas = {(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6)}
+manos = [[],[],[],[]]
+
+
+for i in range (4):
+    muestra = random.sample(list(fichas), 7)
+    manos[i] = muestra
+    fichas -= set(muestra)
+
+
+#Inicializacion de variables y asignacion de fichas (7 por jugador)
+tablero=Tablero()
+#persona
+player1 = Player('Humano',manos(0),tablero)
+#bots
+player2 = Player('Novato',manos(1),tablero)
+player3 = Player('Promedio',manos(2),tablero)
+player4 = Player('Experto',manos(3),tablero)
 
 """
 fichas=[(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6)]
 #Mezcla de las fichas
 random.shuffle(fichas)
-
-
-
 
 #Inicializacion de variables y asignacion de fichas (7 por jugador)
 tablero=Tablero()

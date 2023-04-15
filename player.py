@@ -17,7 +17,9 @@ class Player:
     
     def jugar_ficha(self,ficha):
         
-        if self.tablero.cabeza in ficha or  self.tablero.cola in ficha:
+        if ficha==(7,7): 
+            print(f'\n{self.name} pasó')
+        elif self.tablero.cabeza in ficha or  self.tablero.cola in ficha:
             self.tablero.agregar_ficha(ficha)
             self.fichas.remove(ficha)
             print(f'\n{self.name} jugó {ficha}\n')
@@ -40,11 +42,7 @@ class Player:
             for ficha in self.jugadas_disponibles():
                 if sum(ficha)>sum(mayor):
                     mayor=ficha
-            self.jugar_ficha(mayor)
-
-
-
-
+          
     @classmethod
     def designacion_turnos(cls):
         

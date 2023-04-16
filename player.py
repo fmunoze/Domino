@@ -37,35 +37,39 @@ class Player:
         return jugadas_disponibles
         
     def jugada_automatica(self,nivel):
-        
+        orden = 0
         if nivel==1:
 
             disponiblesNovato = self.jugadas_disponibles() 
             print("las jugadas disp. del Novato es:", disponiblesNovato, "borrar este print luego")
             #si no hay jugada disponible, pasa
+            orden = 1
             if disponiblesNovato == []:
                 print("Novato pasó")
                 print()
-                return
+                orden = 0
+                return orden
             self.jugar_ficha(random.choice(disponiblesNovato))
-            return
+            return orden
 
         elif nivel==2:
             
             disponiblesPromedio = self.jugadas_disponibles()
-            print("la mano disp. del Promedio es:", disponiblesPromedio, "borrar este print luego")            
+            print("la mano disp. del Promedio es:", disponiblesPromedio, "borrar este print luego")  
+            orden =1          
             #si no hay jugada disponible, pasa
             if disponiblesPromedio == []:
                 print("Promedio pasó")
                 print()
-                return
+                orden=0
+                return orden
 
             mayor=(-1,-1)
             for ficha in disponiblesPromedio:
                 if sum(ficha)>sum(mayor):
                     mayor=ficha
             self.jugar_ficha(mayor)
-            return
+            return orden
  
         elif nivel ==3:
 
@@ -92,11 +96,13 @@ class Player:
 
             disponiblesExperto = self.jugadas_disponibles()
             print("la mano disp. del Experto es:", disponiblesExperto, "borrar este print luego") 
+            orden =1 
             #si no hay jugada disponible, pasa
             if disponiblesExperto == []:
                 print("Experto pasó")
                 print()
-                return
+                orden = 0
+                return orden
 
             manoExperta = [0,0,0,0,0,0,0] #para verificar el numero de apariciones de cada digito en la mano del bot Experto        
             for ficha in disponiblesExperto:
@@ -143,7 +149,10 @@ class Player:
                       elegida=ficha
             
             self.jugar_ficha(elegida)
-            return
+
+
+            
+            return orden
 
 
 

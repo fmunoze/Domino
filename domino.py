@@ -44,6 +44,7 @@ player4 = Player('Experto',set(fichas[21:28]),tablero)
 Player.designacion_turnos()
 
 ganador=None
+contador = [7,7,7,7]
 while True:
     bloqueo=0
     for player in Player.players:
@@ -57,20 +58,26 @@ while True:
         if player!=player1:
             
             if player == player2:
-                player.jugada_automatica(1)
+                cuenta = player.jugada_automatica(1)
+                contador[player.turno-1]-=cuenta
+                print(contador[player.turno-1])
                 if player.fichas==set():
                     ganador=player
                     break
                 continue
             elif player == player3:
-                player.jugada_automatica(2)
+                cuenta = player.jugada_automatica(2)
+                contador[player.turno-1]-=cuenta
+                print(contador[player.turno-1])
                 if player.fichas==set():
                     ganador=player
                     break
                 continue
 
             elif player == player4:
-                player.jugada_automatica(3)
+                cuenta =player.jugada_automatica(3)
+                contador[player.turno-1]-=cuenta
+                print(contador[player.turno-1])
                 if player.fichas==set():
                     ganador=player
                     break
@@ -84,17 +91,30 @@ while True:
         while not jugada_valida:
             
             try:
-                ficha=tuple(map(int,input('ingrese la ficha a jugar de la forma \'n m\', para pasar 7 7: ').split()))
+                ficha=list(map(int,input('ingrese la ficha a jugar de la forma \'n m\', para pasar 7 7: ').split()))
+                if len(ficha) == 4:
+
+                    tuples = [(int(ficha[i]), int(ficha[i+1])) for i in range(0, 4, 2)]
+
+                elif len(ficha) == 2:
+                    tuples = [(int(ficha[0]), int(ficha[1]))]
             except:
                 print('Jugada invalida, ingrese de nuevo la ficha')
                 continue
             
-            if ficha in player.jugadas_disponibles() or ficha==(7,7):
+            for ficha in tuples:
+               jugada_valida=False    
+               if ficha in player.jugadas_disponibles() or ficha==(7,7):
                 jugada_valida=True     
-            else:
+
+            if jugada_valida==False:
                 print('Jugada invalida, ingrese de nuevo la ficha')
-        
-        player.jugar_ficha(ficha)
+        tupleTamano = len(tuples)
+        if tupleTamano == 1:
+            player.jugar_ficha(ficha)
+        elif tupleTamano == 2 and tuples[0][1]==tuples[0][0] and tuples[1][1]==tuples[1][0]:
+             player.jugar_ficha(tuples[0])
+             player.jugar_ficha(tuples[1])
         
         if player.fichas==set():
             ganador=player

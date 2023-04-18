@@ -92,21 +92,28 @@ while True:
             
             try:
                 ficha=list(map(int,input('ingrese la ficha a jugar de la forma \'n m\', para pasar 7 7: ').split()))
-                if len(ficha) == 4:
-
-                    tuples = [(int(ficha[i]), int(ficha[i+1])) for i in range(0, 4, 2)]
-
-                elif len(ficha) == 2:
+               
+                if len(ficha) == 2:
                     tuples = [(int(ficha[0]), int(ficha[1]))]
+                else:
+                    tuples = [(int(ficha[i]), int(ficha[i+1])) for i in range(0, 4, 2)]
+                    if tuples[0][1]!=tuples[0][0] and tuples[1][1]!=tuples[1][0]:
+                        print('Jugada invalida, ingrese de nuevo la ficha')
+                        continue
             except:
                 print('Jugada invalida, ingrese de nuevo la ficha')
                 continue
             
             for ficha in tuples:
-               jugada_valida=False    
-               if ficha in player.jugadas_disponibles() or ficha==(7,7):
-                jugada_valida=True     
-
+               if  ficha==(7,7) and len(tuples)==1:
+                   jugada_valida=True
+                   break
+                
+               elif ficha not in player.jugadas_disponibles() :
+                    jugada_valida=False
+                    break
+               jugada_valida=True     
+                
             if jugada_valida==False:
                 print('Jugada invalida, ingrese de nuevo la ficha')
         tupleTamano = len(tuples)

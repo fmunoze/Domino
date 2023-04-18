@@ -60,7 +60,7 @@ while True:
             if player == player2:
                 cuenta = player.jugada_automatica(1)
                 contador[player.turno-1]-=cuenta
-                print(contador[player.turno-1])
+                print(f'{player.name} tiene {contador[player.turno-1]}')
                 if player.fichas==set():
                     ganador=player
                     break
@@ -68,7 +68,7 @@ while True:
             elif player == player3:
                 cuenta = player.jugada_automatica(2)
                 contador[player.turno-1]-=cuenta
-                print(contador[player.turno-1])
+                print(f'{player.name} tiene {contador[player.turno-1]}')
                 if player.fichas==set():
                     ganador=player
                     break
@@ -77,7 +77,7 @@ while True:
             elif player == player4:
                 cuenta =player.jugada_automatica(3)
                 contador[player.turno-1]-=cuenta
-                print(contador[player.turno-1])
+                print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
                     break

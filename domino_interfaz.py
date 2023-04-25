@@ -91,6 +91,9 @@ pygame.draw.rect(pantalla, (200,200,200), (375,10,300,50))
 
 #########################
 #una ficha
+
+areaFicha = pygame.draw.rect(pantalla, (255,255,255),(50*10,50*6-25,50,100))
+
 valorDerecho = 6
 valorIzquierdo = 6
 
@@ -102,6 +105,8 @@ pygame.draw.rect(pantalla, (fichaColor),(50*10,50*(6+1)-25,50,50))
 pygame.draw.rect(pantalla, (0,0,0),(50*10,50*(6+1)-25,50,50),3)
 numeroDer= fuente.render(str(valorDerecho), True, (0,0,0))
 
+#bolitaCentro
+bolita = pygame.draw.circle(pantalla,(243, 202, 76),(50*10+25,50*7-25),5)
 centroX = 75
 centroY = 75
 
@@ -131,6 +136,8 @@ centroY = 75
 pantalla.blit(numeroIzq, ((centroX - numeroIzq.get_width() // 2)+posfichaX, (centroY - numeroIzq.get_height() //2)+posfichaY ))
 pantalla.blit(numeroDer, ((centroX - numeroDer.get_width() // 2)+posfichaX+50, (centroY  - numeroDer.get_height() // 2)+posfichaY))
 
+
+bolita = pygame.draw.circle(pantalla,(243, 202, 76),(50*12,50*7-25),5)
 ############################
 
 

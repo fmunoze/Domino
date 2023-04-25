@@ -152,7 +152,7 @@ while True:
             sys.exit()
             
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if player == player1:
+            if player == Player1:
                 clickPos = pygame.mouse.get_pos()
 
 

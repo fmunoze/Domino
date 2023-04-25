@@ -39,7 +39,7 @@ pygame.time.Clock().tick(10)
 fichaColor =  255, 248, 231
 
 
-ancho = 1000
+ancho = 1050
 alto = 700
 
 pantalla = pygame.display.set_mode((ancho,alto))
@@ -66,7 +66,7 @@ tableroAncho = tamanoCelda * 18
 tableroAlto = tamanoCelda * 12
 
 for fila in range (12):
-    for columna in range (18):
+    for columna in range (19):
 
         if (fila+columna)%2 == 0:
             color = (celdaColor1)
@@ -75,8 +75,8 @@ for fila in range (12):
 
         pygame.draw.rect(pantalla, color, (tableroPosX + columna * tamanoCelda, tableroPosY + fila * tamanoCelda, tamanoCelda, tamanoCelda))
 
-fichasPosX = 150
-fichasPosY = 580 
+fichasPosX = 150+25
+fichasPosY = 580
 fichasAncho = 700
 fichasAlto = 110
 
@@ -85,13 +85,28 @@ pygame.draw.rect(pantalla, (200,200,200), (fichasPosX, fichasPosY, fichasAncho, 
 #jugador izq
 pygame.draw.rect(pantalla, (200,200,200), (10,200,50,300))
 #jugador der
-pygame.draw.rect(pantalla, (200,200,200), (940,200,50,300))
+pygame.draw.rect(pantalla, (200,200,200), (990,200,50,300))
 #jugador arriba
-pygame.draw.rect(pantalla, (200,200,200), (350,10,300,50))
+pygame.draw.rect(pantalla, (200,200,200), (375,10,300,50))
 
+
+#una ficha
+valorDerecho = 6
+valorIzquierdo = 6
 
 fuente = pygame.font.SysFont('Arial', 20)
-pygame.draw.rect(pantalla, (fichaColor),(50*9,50*6,50,100))
+pygame.draw.rect(pantalla, (fichaColor),(50*10,50*6-25,50,50))
+pygame.draw.rect(pantalla, (0,0,0),(50*10,50*6-25,50,50),3)
+numeroIzq= fuente.render(str(valorIzquierdo), True, (0,0,0))
+pygame.draw.rect(pantalla, (fichaColor),(50*10,50*(6+1)-25,50,50))
+pygame.draw.rect(pantalla, (0,0,0),(50*10,50*(6+1)-25,50,50),3)
+numeroDer= fuente.render(str(valorDerecho), True, (0,0,0))
+
+centroX = 75
+centroY = 75
+
+pantalla.blit(numeroIzq, ((centroX - numeroIzq.get_width() // 2)+450, (centroY - numeroIzq.get_height() //2)+225 ))
+pantalla.blit(numeroDer, ((centroX - numeroDer.get_width() // 2)+450, (centroY + 25 - numeroDer.get_height() // 2)+250))
 
 
 

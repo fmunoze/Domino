@@ -89,7 +89,7 @@ pygame.draw.rect(pantalla, (200,200,200), (990,200,50,300))
 #jugador arriba
 pygame.draw.rect(pantalla, (200,200,200), (375,10,300,50))
 
-
+#########################
 #una ficha
 valorDerecho = 6
 valorIzquierdo = 6
@@ -107,6 +107,31 @@ centroY = 75
 
 pantalla.blit(numeroIzq, ((centroX - numeroIzq.get_width() // 2)+450, (centroY - numeroIzq.get_height() //2)+225 ))
 pantalla.blit(numeroDer, ((centroX - numeroDer.get_width() // 2)+450, (centroY + 25 - numeroDer.get_height() // 2)+250))
+
+
+#otra ficha
+
+valorDerecho = 3
+valorIzquierdo = 6
+
+posfichaX= 500
+posfichaY= 250
+
+fuente = pygame.font.SysFont('Arial', 20)
+pygame.draw.rect(pantalla, (fichaColor),(50*11,50*6,50,50))
+pygame.draw.rect(pantalla, (0,0,0),(50*11,50*6,50,50),3)
+numeroIzq= fuente.render(str(valorIzquierdo), True, (0,0,0))
+pygame.draw.rect(pantalla, (fichaColor),(50*12,50*6,50,50))
+pygame.draw.rect(pantalla, (0,0,0),(50*12,50*6,50,50),3)
+numeroDer= fuente.render(str(valorDerecho), True, (0,0,0))
+
+centroX = 75
+centroY = 75
+
+pantalla.blit(numeroIzq, ((centroX - numeroIzq.get_width() // 2)+posfichaX, (centroY - numeroIzq.get_height() //2)+posfichaY ))
+pantalla.blit(numeroDer, ((centroX - numeroDer.get_width() // 2)+posfichaX+50, (centroY  - numeroDer.get_height() // 2)+posfichaY))
+
+############################
 
 
 

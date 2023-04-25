@@ -47,6 +47,8 @@ pygame.display.set_caption("Dominó")
 board = pygame.image.load("marmol.png")
 boardrect = board.get_rect()
 
+pantalla.blit(board, (0, 0))
+
 
 #fondoColor = (193,217,232)
 #pantalla.fill(fondoColor)
@@ -76,7 +78,14 @@ fichasPosY = 580
 fichasAncho = 700
 fichasAlto = 110
 
-pygame.draw.rect(pantalla, (255,255,255), (fichasPosX, fichasPosY, fichasAncho, fichasAlto))
+pygame.draw.rect(pantalla, (200,200,200), (fichasPosX, fichasPosY, fichasAncho, fichasAlto))
+
+#jugador izq
+pygame.draw.rect(pantalla, (200,200,200), (10,200,50,300))
+#jugador der
+pygame.draw.rect(pantalla, (200,200,200), (940,200,50,300))
+#jugador arriba
+pygame.draw.rect(pantalla, (200,200,200), (350,10,300,50))
 
 while True:
     for event in pygame.event.get():
@@ -86,7 +95,7 @@ while True:
             
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if player == player1:
-            clickPos = pygame.mouse.get_pos()
+                clickPos = pygame.mouse.get_pos()
 
 
     pygame.display.update()
@@ -95,5 +104,4 @@ while True:
 
 
 pygame.quit()
-
 

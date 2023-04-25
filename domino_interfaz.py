@@ -27,6 +27,7 @@ Player.designacion_turnos()
 ###########################
 
 import pygame
+import sys
 
 
 pygame .init()
@@ -35,7 +36,8 @@ pygame .init()
 #para los fps, no estoy seguro como va bien aún o si va o no
 pygame.time.Clock().tick(10)
 
-fichaColor = 248,246,241
+fichaColor =  255, 248, 231
+
 
 ancho = 1000
 alto = 700
@@ -87,6 +89,15 @@ pygame.draw.rect(pantalla, (200,200,200), (940,200,50,300))
 #jugador arriba
 pygame.draw.rect(pantalla, (200,200,200), (350,10,300,50))
 
+
+fuente = pygame.font.SysFont('Arial', 20)
+pygame.draw.rect(pantalla, (fichaColor),(50*9,50*6,50,100))
+
+
+
+
+
+
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -100,8 +111,4 @@ while True:
 
     pygame.display.update()
 
-
-
-
 pygame.quit()
-

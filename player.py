@@ -39,7 +39,7 @@ class Player:
 
 
 
-        
+
     def jugada_automatica(self,nivel):
         orden = 0
         if nivel==1:
@@ -92,7 +92,7 @@ class Player:
 
             #hacer un conteo de las fichas en el tablero, para luego verificar si hay alguna de 7 o 6 (de 8 total por dígito)
             
-            registro = [0,0,0,0,0,0,0]
+            registro = [0,0,0,0,0,0,0] #del tablero
             for ficha in evaluacion:
                 for i in ficha:
                     #conteo de las apariciones de cada digito, agregandola en el registro segun su indice correspondiente
@@ -100,7 +100,7 @@ class Player:
 
             disponiblesExperto = self.jugadas_disponibles()
             print("la mano disp. del Experto es:", disponiblesExperto, "borrar este print luego") 
-            orden =1 
+            orden = 1 
             #si no hay jugada disponible, pasa
             if disponiblesExperto == []:
                 print("Experto pasó")
@@ -116,10 +116,10 @@ class Player:
 
             for i in range (7):
 
-                if registro[i]==7 and manoExperta[i]!=0:
+                if registro[i]==7 and manoExperta[i]!=0: #reservarla (pues solo este jugador puede ocupar ese lado del tablero, pues tiene la última ficha que se puede poner en ese lado)
                     prioridad1 = manoExperta[i]
                     break
-                elif registro[i]==6 and manoExperta[i]!=0:
+                elif registro[i]==6 and manoExperta[i]!=0: #jugarla inmediatamente (pues hay posiblemente otro jugador con esa ficha, y solo el primero que la ponga la podra jugar, el otro no)
                     prioridad2 = manoExperta[i]
                     break
 
@@ -127,11 +127,12 @@ class Player:
 
             while elegida == (9,9):
 
-                if prioridad1:
+                if prioridad1: 
 
                     for ficha in disponiblesExperto:
                         if prioridad1 in ficha:
-                            elegida  = ficha
+                            disponiblesExperto.remove(ficha) #reserva la ficha para otro turno
+                            elegida = (-1,-1)
                             break
                     prioridad1 = False
 
@@ -139,14 +140,14 @@ class Player:
                 elif prioridad2:
                     for ficha in disponiblesExperto:
                         if prioridad2 == ficha:
-                            elegida = ficha
+                            elegida = ficha #elige para jugar la ficha inmediatamente
                             break
                     prioridad2 = False
                     
                 else:
                     elegida = (-1,-1)
 
-            if elegida == (-1,-1):
+            if elegida == (-1,-1): #de no suceder la prioridad 2, elige la ficha de mayor valor (sin la reservad, si sucedió la prioridad 1)
 
                 for ficha in self.jugadas_disponibles():                    
                     if sum(ficha)>sum(elegida):

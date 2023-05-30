@@ -161,6 +161,15 @@ while True:
         break
         
 
+print ("\nPartida finalizada, tablero final:")
+print ('-------------------------------------------------')
+for ficha in tablero.fichas:
+
+    print (ficha, end= ' ')
+
+print ('\n-------------------------------------------------')
+
+
 for player in Player.players: #for que revisa el puntaje de los jugadores; primero setea el ganador como el humano, y luego verifica si hay otro mejor puntaje. 
     if ganador==None:ganador=player
     print(f'mano de {player.name}: {player.fichas}')

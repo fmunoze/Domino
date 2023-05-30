@@ -13,7 +13,7 @@ class Player:
         self.name = name
         self.fichas = fichas
         self.turno = None
-        self.tablero= tablero
+        self.tablero = tablero
         self.players.append(self)
     
     
@@ -29,12 +29,16 @@ class Player:
             print(f'{self.name} su jugada invalida\n')
     
         
-    def jugadas_disponibles(self):
+    def jugadas_disponibles(self): # O(n)   
         
-        if (6,6) in self.fichas:
+        if (6,6) in self.fichas: 
             return [(6,6)]
         jugadas_disponibles=[ficha for ficha in self.fichas if self.tablero.cabeza in ficha or self.tablero.cola in ficha]
         return jugadas_disponibles
+        
+
+
+
         
     def jugada_automatica(self,nivel):
         orden = 0
@@ -161,7 +165,7 @@ class Player:
 
          
     @classmethod
-    def designacion_turnos(cls):
+    def designacion_turnos(cls): #O(k n), k: jugadores, n: numero de fichas
         
         turno=2
         encontrado=False

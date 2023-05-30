@@ -59,6 +59,7 @@ while True:
             if player == player2: #Juega la IA novata
                 cuenta = player.jugada_automatica(1)
                 contador[player.turno-1]-=cuenta
+                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
@@ -67,6 +68,7 @@ while True:
             elif player == player3: #juega la IA medio
                 cuenta = player.jugada_automatica(2)
                 contador[player.turno-1]-=cuenta
+                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
@@ -76,6 +78,7 @@ while True:
             elif player == player4: #Juega la IA avanzada
                 cuenta =player.jugada_automatica(3)
                 contador[player.turno-1]-=cuenta
+                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
@@ -133,7 +136,7 @@ while True:
         break
         
 
-for player in Player.players:
+for player in Player.players: #for que revisa el puntaje de los jugadores; primero setea el ganador como el humano, y luego verifica si hay otro mejor puntaje. 
     if ganador==None:ganador=player
     print(f'mano de {player.name}: {player.fichas}')
     if sum(list(map(sum,player.fichas)))<sum(list(map(sum,ganador.fichas))):

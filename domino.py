@@ -44,31 +44,48 @@ Player.designacion_turnos() #designacion de turnos
 
 ganador=None
 contador = [7,7,7,7]
+
+bloqueo=0 #para hallar si hay un loop en el que nadie mas puede jugar, y finalizar el juego "juego cerrado"
+
 while True:
-    bloqueo=0 #para hallar si hay un loop en el que nadie mas puede jugar, y finalizar el juego "juego cerrado"
+    
     for player in Player.players:
-        sleep(0.5)
+        #sleep(0.5) Descomentar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         print('-------------------------------------------------------------')
         
-        if player.jugadas_disponibles()==[]: #si no tiene jugadas disponibles, agrega al contador de bloqueo
-            bloqueo+=1
+        #if player.jugadas_disponibles()==[]: #si no tiene jugadas disponibles, agrega al contador de bloqueo
+        #    bloqueo+=1
 
         if player!=player1: #juega la IA
             
             if player == player2: #Juega la IA novata
                 cuenta = player.jugada_automatica(1)
                 contador[player.turno-1]-=cuenta
-                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
+                
+
+
+                if cuenta == 1:
+                    bloqueo = 0
+                else: bloqueo += 1
+                
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
                     break
                 continue
+
             elif player == player3: #juega la IA medio
                 cuenta = player.jugada_automatica(2)
                 contador[player.turno-1]-=cuenta
-                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
+
+
+
+
+                if cuenta == 1:
+                    bloqueo = 0
+                else: bloqueo += 1
+                
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
@@ -78,7 +95,12 @@ while True:
             elif player == player4: #Juega la IA avanzada
                 cuenta =player.jugada_automatica(3)
                 contador[player.turno-1]-=cuenta
-                bloqueo = 0 ##################################################################### REVISAR SISI VA AHI EL BLOQUEO = 0
+
+
+                if cuenta == 1:
+                    bloqueo = 0
+                else: bloqueo += 1
+                
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
@@ -111,6 +133,8 @@ while True:
             for ficha in tuples: 
                if  ficha==(7,7) and len(tuples)==1: #para pasar
                    jugada_valida=True
+
+                   bloqueo += 1
                    break
                 
                elif ficha not in player.jugadas_disponibles(): #para una ficha que no se puede jugar
@@ -123,7 +147,8 @@ while True:
         tupleTamano = len(tuples)
         if tupleTamano == 1:
             player.jugar_ficha(ficha)
-            bloqueo = 0  #faltaba reiniciar el bloqueo si se efectuaba jugada
+
+
         elif tupleTamano == 2 and tuples[0][1]==tuples[0][0] and tuples[1][1]==tuples[1][0]:
              player.jugar_ficha(tuples[0])
              player.jugar_ficha(tuples[1])
@@ -132,7 +157,7 @@ while True:
             ganador=player
             break
     
-    if ganador!=None or bloqueo==4:
+    if ganador!=None or bloqueo >=4:
         break
         
 

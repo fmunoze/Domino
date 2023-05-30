@@ -45,7 +45,7 @@ class Player:
         if nivel==1:
 
             disponiblesNovato = self.jugadas_disponibles() 
-            print("las jugadas disp. del Novato es:", disponiblesNovato, "borrar este print luego")
+            #print("las jugadas disp. del Novato es:", disponiblesNovato, "borrar este print luego")
             #si no hay jugada disponible, pasa
             orden = 1
             if disponiblesNovato == []:
@@ -59,7 +59,7 @@ class Player:
         elif nivel==2:
             
             disponiblesPromedio = self.jugadas_disponibles()
-            print("la mano disp. del Promedio es:", disponiblesPromedio, "borrar este print luego")  
+            #print("la mano disp. del Promedio es:", disponiblesPromedio, "borrar este print luego")  
             orden =1          
             #si no hay jugada disponible, pasa
             if disponiblesPromedio == []:
@@ -99,7 +99,7 @@ class Player:
                     registro[i] += 1
 
             disponiblesExperto = self.jugadas_disponibles()
-            print("la mano disp. del Experto es:", disponiblesExperto, "borrar este print luego") 
+            #print("la mano disp. del Experto es:", disponiblesExperto, "borrar este print luego") 
             orden = 1 
             #si no hay jugada disponible, pasa
             if disponiblesExperto == []:
@@ -154,8 +154,6 @@ class Player:
                       elegida=ficha
             
             self.jugar_ficha(elegida)
-
-
             
             return orden
 

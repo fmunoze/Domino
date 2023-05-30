@@ -77,12 +77,6 @@ class Player:
  
         elif nivel ==3:
 
-            #Falta configurar una forma de que los dobles no sumen doble en el registro, y asi el bot pueda diferenciar cuando 
-            # tiene un doble, contarlo solo como una aparicion, por ahora lo dejo con X de 8 posibles apariciones, y el doble 
-            # cuenta como doble aparicion
-
-            #tambien faltaria agregar un conteo que sume cuantas hay en el tablero, y cuantas del mismo digito en la mano, 
-            #y calcule si deberia jugar o no, si se le cerrraria o no, pero ya es too much eso, solo queda ahi la idea
 
             elegida = (9,9)
             prioridad1 = False

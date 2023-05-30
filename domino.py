@@ -50,7 +50,7 @@ bloqueo=0 #para hallar si hay un loop en el que nadie mas puede jugar, y finaliz
 while True:
     
     for player in Player.players:
-        #sleep(0.5) Descomentar !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        sleep(0.5)
 
         print('-------------------------------------------------------------')
         

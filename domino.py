@@ -27,8 +27,8 @@ player4 = Player('Experto',manos(3),tablero)
 
 """
 fichas=[(0,0),(0,1),(0,2),(0,3),(0,4),(0,5),(0,6),(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(2,2),(2,3),(2,4),(2,5),(2,6),(3,3),(3,4),(3,5),(3,6),(4,4),(4,5),(4,6),(5,5),(5,6),(6,6)]
-#Mezcla de las fichas
-random.shuffle(fichas)
+
+random.shuffle(fichas)  #Mezcla de las fichas
 
 #Inicializacion de variables y asignacion de fichas (7 por jugador)
 tablero=Tablero()
@@ -40,41 +40,40 @@ player3 = Player('Promedio',set(fichas[14:21]),tablero)
 player4 = Player('Experto',set(fichas[21:28]),tablero)
 
 
-#designacion de turnos
-Player.designacion_turnos()
+Player.designacion_turnos() #designacion de turnos
 
 ganador=None
 contador = [7,7,7,7]
 while True:
-    bloqueo=0
+    bloqueo=0 #para hallar si hay un loop en el que nadie mas puede jugar, y finalizar el juego "juego cerrado"
     for player in Player.players:
         sleep(0.5)
 
         print('-------------------------------------------------------------')
         
-        if player.jugadas_disponibles()==[]:
+        if player.jugadas_disponibles()==[]: #si no tiene jugadas disponibles, agrega al contador de bloqueo
             bloqueo+=1
 
-        if player!=player1:
+        if player!=player1: #juega la IA
             
-            if player == player2:
+            if player == player2: #Juega la IA novata
                 cuenta = player.jugada_automatica(1)
                 contador[player.turno-1]-=cuenta
-                print(f'{player.name} tiene {contador[player.turno-1]}')
+                print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
                     break
                 continue
-            elif player == player3:
+            elif player == player3: #juega la IA medio
                 cuenta = player.jugada_automatica(2)
                 contador[player.turno-1]-=cuenta
-                print(f'{player.name} tiene {contador[player.turno-1]}')
+                print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
                 if player.fichas==set():
                     ganador=player
                     break
                 continue
 
-            elif player == player4:
+            elif player == player4: #Juega la IA avanzada
                 cuenta =player.jugada_automatica(3)
                 contador[player.turno-1]-=cuenta
                 print(f'{player.name} tiene {contador[player.turno-1]} fichas.')
@@ -84,41 +83,44 @@ while True:
                 continue
 
 
-        jugada_valida=False
+
+        #Si no jugó la IA, ahora es el turno del jugador  y muestra turno, tablero, fichas y jugadas que puede hacer:
         print(f'Turno de {player.name}\n     Tablero: {player.tablero.fichas}\n     Mano: {player.fichas}\n     Jugadas disponibles: {player.jugadas_disponibles()}\n')
         
-        
+        jugada_valida=False
+
         while not jugada_valida:
             
             try:
-                ficha=list(map(int,input('ingrese la ficha a jugar de la forma \'n m\', para pasar 7 7: ').split()))
+                ficha=list(map(int,input('ingrese la ficha a jugar de la forma \'n m\'. Para pasar ingrese \'7 7\': ').split()))  #jugador ingresa ficha a jugar
                
-                if len(ficha) == 2:
+                if len(ficha) == 2: #verifica formato de ficha
                     tuples = [(int(ficha[0]), int(ficha[1]))]
-                else:
+                else:               #para formato inválido
                     tuples = [(int(ficha[i]), int(ficha[i+1])) for i in range(0, 4, 2)]
                     if tuples[0][1]!=tuples[0][0] and tuples[1][1]!=tuples[1][0]:
                         print('Jugada invalida, ingrese de nuevo la ficha')
                         continue
-            except:
+            except: 
                 print('Jugada invalida, ingrese de nuevo la ficha')
                 continue
             
-            for ficha in tuples:
-               if  ficha==(7,7) and len(tuples)==1:
+            for ficha in tuples: 
+               if  ficha==(7,7) and len(tuples)==1: #para pasar
                    jugada_valida=True
                    break
                 
-               elif ficha not in player.jugadas_disponibles() :
+               elif ficha not in player.jugadas_disponibles(): #para una ficha que no se puede jugar
                     jugada_valida=False
                     break
                jugada_valida=True     
                 
             if jugada_valida==False:
-                print('Jugada invalida, ingrese de nuevo la ficha')
+                print('Jugada invalida, ingrese de nuevo la ficha') #si intentó jugar una ficha que no se tiene, reinicia el intento
         tupleTamano = len(tuples)
         if tupleTamano == 1:
             player.jugar_ficha(ficha)
+            bloqueo = 0  #faltaba reiniciar el bloqueo si se efectuaba jugada
         elif tupleTamano == 2 and tuples[0][1]==tuples[0][0] and tuples[1][1]==tuples[1][0]:
              player.jugar_ficha(tuples[0])
              player.jugar_ficha(tuples[1])
